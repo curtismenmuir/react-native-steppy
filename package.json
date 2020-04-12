@@ -1,0 +1,35 @@
+{
+  "name": "react-native-steppy",
+  "version": "0.0.1",
+  "description": "An animated progress indicator component for React-Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curtismenmuir/react-native-steppy.git"
+  },
+  "keywords": [
+    "react-native",
+    "react component",
+    "react native component",
+    "react",
+    "react native",
+    "mobile",
+    "ios",
+    "android",
+    "ui",
+    "step indicator",
+    "progress",
+    "progress indicator",
+    "progress steps",
+    "steppy"
+  ],
+  "author": "Curtis Menmuir",
+  "license": "MIT",
+  "homepage": "https://github.com/curtismenmuir/react-native-steppy#readme",
+  "dependencies": {
+    "prop-types": "^15.6.2"
+  }
+}
