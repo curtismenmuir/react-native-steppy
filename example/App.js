@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
-
 import { Steppy } from "react-native-steppy";
 
 export default class App extends PureComponent {
@@ -9,9 +8,26 @@ export default class App extends PureComponent {
   }
 
   render() {
+    const exampleSteps = [
+      {
+        title: "A",
+      },
+      {
+        title: "B",
+      },
+      {
+        title: "C",
+      },
+      {
+        title: "D",
+      },
+      {
+        title: "E",
+      },
+    ];
     return (
       <View style={styles.container}>
-        <Steppy height={200} width={400} color={"#A60067"} />
+        <Steppy width={800} color={"#A60067"} steps={exampleSteps} />
       </View>
     );
   }
