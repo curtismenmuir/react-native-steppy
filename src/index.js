@@ -22,21 +22,35 @@ export default class Steppy extends PureComponent {
     super(props);
   }
 
-  render() {
-    const panelHeight = getSizeMultiplication(this.props.width, 0.12);
+  getPaddingSize() {
+    switch (this.props.steps.length) {
+      case 2:
+        return 0.35;
+      case 3:
+        return 0.25;
+      case 4:
+        return 0.15;
+      case 5:
+        return 0.05;
+    }
+  }
 
+  render() {
+    const panelHeight = getSizeMultiplication(this.props.width, 0.1);
+    const paddingSize = this.getPaddingSize();
+    console.log("PaddingSize: " + paddingSize);
     const panelContents = this.props.steps.map((data, index) => {
       if (index !== this.props.steps.length - 1) {
         return (
           <View style={{ flexDirection: "row" }} key={index}>
             <StepPanel
               height={panelHeight}
-              width={getSizeMultiplication(this.props.width, 0.12)}
+              width={getSizeMultiplication(this.props.width, 0.1)}
               color={Colors.green}
             />
             <StepSeparator
               height={panelHeight}
-              width={getSizeMultiplication(this.props.width, 0.08)}
+              width={getSizeMultiplication(this.props.width, 0.1)}
               color={Colors.red}
             />
           </View>
@@ -45,7 +59,7 @@ export default class Steppy extends PureComponent {
         return (
           <StepPanel
             height={panelHeight}
-            width={getSizeMultiplication(this.props.width, 0.12)}
+            width={getSizeMultiplication(this.props.width, 0.1)}
             color={Colors.green}
             key={index}
           />
@@ -59,10 +73,19 @@ export default class Steppy extends PureComponent {
           height: panelHeight,
           width: this.props.width,
           flexDirection: "row",
-          alignItems: "center",
         }}
       >
+        <View
+          style={{
+            width: getSizeMultiplication(this.props.width, paddingSize),
+          }}
+        />
         {panelContents}
+        <View
+          style={{
+            width: getSizeMultiplication(this.props.width, paddingSize),
+          }}
+        />
       </View>
     );
   }
