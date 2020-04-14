@@ -22,23 +22,24 @@ export default class Steppy extends PureComponent {
     super(props);
   }
 
-  getPaddingSize() {
+  getPanelSizes() {
     switch (this.props.steps.length) {
       case 2:
-        return 0.35;
+        return { separator: 0.5, padding: 0.15 };
       case 3:
-        return 0.25;
+        return { separator: 0.25, padding: 0.1 };
       case 4:
-        return 0.15;
+        return { separator: 0.15, padding: 0.075 };
       case 5:
-        return 0.05;
+        return { separator: 0.1, padding: 0.05 };
     }
   }
 
   render() {
     const panelHeight = getSizeMultiplication(this.props.width, 0.1);
-    const paddingSize = this.getPaddingSize();
-    console.log("PaddingSize: " + paddingSize);
+    const sizes = this.getPanelSizes();
+    console.log("Sizes: " + JSON.stringify(sizes));
+
     const panelContents = this.props.steps.map((data, index) => {
       if (index !== this.props.steps.length - 1) {
         return (
@@ -50,7 +51,7 @@ export default class Steppy extends PureComponent {
             />
             <StepSeparator
               height={panelHeight}
-              width={getSizeMultiplication(this.props.width, 0.1)}
+              width={getSizeMultiplication(this.props.width, sizes.separator)}
               color={Colors.red}
             />
           </View>
@@ -77,13 +78,13 @@ export default class Steppy extends PureComponent {
       >
         <View
           style={{
-            width: getSizeMultiplication(this.props.width, paddingSize),
+            width: getSizeMultiplication(this.props.width, sizes.padding),
           }}
         />
         {panelContents}
         <View
           style={{
-            width: getSizeMultiplication(this.props.width, paddingSize),
+            width: getSizeMultiplication(this.props.width, sizes.padding),
           }}
         />
       </View>
