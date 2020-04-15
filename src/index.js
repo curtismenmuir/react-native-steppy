@@ -36,8 +36,10 @@ export default class Steppy extends PureComponent {
   }
 
   render() {
-    const panelHeight = getSizeMultiplication(this.props.width, 0.1);
+    const panelSize = getSizeMultiplication(this.props.width, 0.1);
+    const radius = getSizeMultiplication(this.props.width, 0.5);
     const sizes = this.getPanelSizes();
+    const padding = getSizeMultiplication(this.props.width, sizes.padding);
     console.log("Sizes: " + JSON.stringify(sizes));
 
     const panelContents = this.props.steps.map((data, index) => {
@@ -45,22 +47,24 @@ export default class Steppy extends PureComponent {
         return (
           <View style={{ flexDirection: "row" }} key={index}>
             <StepPanel
-              height={panelHeight}
-              width={getSizeMultiplication(this.props.width, 0.1)}
+              height={panelSize}
+              width={panelSize}
+              radius={radius}
               color={Colors.green}
             />
             <StepSeparator
-              height={panelHeight}
+              height={panelSize}
               width={getSizeMultiplication(this.props.width, sizes.separator)}
-              color={Colors.red}
+              color={"#3C3C3C"}
             />
           </View>
         );
       } else {
         return (
           <StepPanel
-            height={panelHeight}
-            width={getSizeMultiplication(this.props.width, 0.1)}
+            height={panelSize}
+            width={panelSize}
+            radius={radius}
             color={Colors.green}
             key={index}
           />
@@ -71,22 +75,14 @@ export default class Steppy extends PureComponent {
       <View
         style={{
           backgroundColor: this.props.color,
-          height: panelHeight,
+          height: panelSize,
           width: this.props.width,
           flexDirection: "row",
         }}
       >
-        <View
-          style={{
-            width: getSizeMultiplication(this.props.width, sizes.padding),
-          }}
-        />
+        <View style={{ width: padding }} />
         {panelContents}
-        <View
-          style={{
-            width: getSizeMultiplication(this.props.width, sizes.padding),
-          }}
-        />
+        <View style={{ width: padding }} />
       </View>
     );
   }

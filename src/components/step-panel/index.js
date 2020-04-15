@@ -7,12 +7,14 @@ export default class StepPanel extends PureComponent {
     color: PropTypes.string.isRequired,
     height: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,
+    radius: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
     color: "#000000",
     height: 200,
-    width: 800,
+    width: 200,
+    radius: 100,
   };
 
   constructor(props) {
@@ -23,11 +25,19 @@ export default class StepPanel extends PureComponent {
     return (
       <View
         style={{
-          backgroundColor: this.props.color,
           height: this.props.height,
           width: this.props.width,
         }}
-      />
+      >
+        <View
+          style={{
+            backgroundColor: this.props.color,
+            height: this.props.height,
+            width: this.props.width,
+            borderRadius: this.props.radius,
+          }}
+        />
+      </View>
     );
   }
 }
