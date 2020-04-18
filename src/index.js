@@ -10,12 +10,15 @@ export default class Steppy extends PureComponent {
     color: PropTypes.string.isRequired,
     width: PropTypes.number.isRequired,
     steps: PropTypes.array.isRequired,
+    dashCount: PropTypes.number.isRequired,
   };
 
+  // TODO - limit steps + dashCount props to 5 max & 2 min
   static defaultProps = {
     color: "#000000",
     width: 200,
     steps: ["A", "B", "C", "D", "E"],
+    dashCount: 5,
   };
 
   constructor(props) {
@@ -40,7 +43,6 @@ export default class Steppy extends PureComponent {
     const radius = getSizeMultiplication(this.props.width, 0.5);
     const sizes = this.getPanelSizes();
     const padding = getSizeMultiplication(this.props.width, sizes.padding);
-    console.log("Sizes: " + JSON.stringify(sizes));
 
     const panelContents = this.props.steps.map((data, index) => {
       if (index !== this.props.steps.length - 1) {
@@ -56,6 +58,7 @@ export default class Steppy extends PureComponent {
               height={panelSize}
               width={getSizeMultiplication(this.props.width, sizes.separator)}
               color={"#3C3C3C"}
+              dashCount={this.props.dashCount}
             />
           </View>
         );

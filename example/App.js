@@ -27,7 +27,12 @@ export default class App extends PureComponent {
     ];
     return (
       <View style={styles.container}>
-        <Steppy width={800} color={"#201C29"} steps={exampleSteps} />
+        <Steppy
+          width={800}
+          color={"#201C29"}
+          steps={exampleSteps}
+          dashCount={3}
+        />
       </View>
     );
   }
