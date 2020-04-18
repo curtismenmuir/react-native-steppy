@@ -11,14 +11,20 @@ export default class Steppy extends PureComponent {
     width: PropTypes.number.isRequired,
     steps: PropTypes.array.isRequired,
     dashCount: PropTypes.number.isRequired,
+    position: PropTypes.number.isRequired,
+    isComplete: PropTypes.bool.isRequired,
+    failedSteps: PropTypes.array.isRequired,
   };
 
   // TODO - limit steps + dashCount props to 5 max & 2 min
   static defaultProps = {
-    color: "#000000",
+    color: Colors.bastille,
     width: 200,
     steps: ["A", "B", "C", "D", "E"],
     dashCount: 5,
+    position: 0,
+    isComplete: false,
+    failedSteps: [],
   };
 
   constructor(props) {
@@ -45,6 +51,11 @@ export default class Steppy extends PureComponent {
     const padding = getSizeMultiplication(this.props.width, sizes.padding);
 
     const panelContents = this.props.steps.map((data, index) => {
+      const currentStep =
+        this.props.position === index && !this.props.isComplete;
+      const inactiveStep =
+        index > this.props.position && !this.props.isComplete;
+      const failedStep = this.props.failedSteps.includes(index);
       if (index !== this.props.steps.length - 1) {
         return (
           <View style={{ flexDirection: "row" }} key={index}>
@@ -53,11 +64,14 @@ export default class Steppy extends PureComponent {
               width={panelSize}
               radius={radius}
               color={Colors.green}
+              currentStep={currentStep}
+              inactiveStep={inactiveStep}
+              failedStep={failedStep}
             />
             <StepSeparator
               height={panelSize}
               width={getSizeMultiplication(this.props.width, sizes.separator)}
-              color={"#3C3C3C"}
+              color={Colors.charcoalGrey}
               dashCount={this.props.dashCount}
             />
           </View>
@@ -69,7 +83,9 @@ export default class Steppy extends PureComponent {
             width={panelSize}
             radius={radius}
             color={Colors.green}
-            key={index}
+            currentStep={currentStep}
+            inactiveStep={inactiveStep}
+            failedStep={failedStep}
           />
         );
       }

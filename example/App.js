@@ -32,6 +32,9 @@ export default class App extends PureComponent {
           color={"#201C29"}
           steps={exampleSteps}
           dashCount={3}
+          position={2}
+          failedSteps={[1]}
+          isComplete={false}
         />
       </View>
     );

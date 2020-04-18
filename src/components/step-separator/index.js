@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import { View } from "react-native";
 import PropTypes from "prop-types";
 import { getSizeMultiplication } from "../../services";
+import { Colors } from "../../themes";
 
 export default class StepSeparator extends PureComponent {
   static propTypes = {
@@ -12,7 +13,7 @@ export default class StepSeparator extends PureComponent {
   };
 
   static defaultProps = {
-    color: "#000000",
+    color: Colors.charcoalGrey,
     height: 200,
     width: 200,
     dashCount: 5,
